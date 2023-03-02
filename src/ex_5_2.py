@@ -7,6 +7,7 @@ This module contains an entry point that
 - writes the processed data to a file called `ex_5_2-processed.csv`
 """
 import numpy as np
+import os
 
 try:
     from src.util import get_repository_root
@@ -15,7 +16,7 @@ except ImportError:
 
 
 if __name__ == "__main__":
-
+    
     # Use these predefined input / output files
     root_dir = get_repository_root()
     INFILE = root_dir / "data" / "ex_5_2-data.csv"
