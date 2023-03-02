@@ -20,6 +20,11 @@ if __name__ == "__main__":
     root_dir = get_repository_root()
     INFILE = root_dir / "data" / "ex_5_2-data.csv"
     OUTFILE = root_dir / "outputs" / "ex_5_2-processed.csv"
+    data = np.loadtxt(INFILE)
+    pre = (data - data.mean(axis=0)) / data.std(axis=0)
+    processed = pre
+    os.makedirs(root_dir / "outputs", exist_ok=True)
+    np.savetxt(OUTFILE, processed, fmt='%.2e')
 
     # Complete the data processing steps using numpy here.
 
