@@ -18,15 +18,14 @@ if __name__ == "__main__":
     # To test your program with arguments, run it from the command line
     # (see README.md for more details)
 
-    par = ArgumentParser(description='writes the data from the inputfile to the outputfile applying a standard scale transform')
+    par = ArgumentParser(description='writes the data from the inputfile to the outputfile applying standard scale transform')
     par.add_argument('infile',help='input file path',nargs='?')
     par.add_argument('outfile',help='output file path',nargs='?')
-    arg = par.parse_args()
-    input = np.loadtxt(arg.infile)
-    pre = input - input.mean(axis=0)
-    pos =  input.std(axis=0)
-    res = pre/pos
-    processed = res
+    arg_parse = par.parse_args()
+    input_data = np.loadtxt(arg_parse.infile)
+    norm1 = (input_data - input_data.mean(axis=0)) 
+    norm2 = input_data.std(axis=0)
+    processed = norm1/norm2
     root_dir = get_repository_root()
     os.makedirs(root_dir / "outputs", exist_ok=True)
-    np.savetxt(arg.outfile, processed, fmt='%.2e')
+    np.savetxt(arg_parse.outfile, processed, fmt='%.2e')
