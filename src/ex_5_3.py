@@ -23,7 +23,7 @@ if __name__ == "__main__":
     par.add_argument('outfile',help='output file path',nargs='?')
     arg = par.parse_args()
     input = np.loadtxt(arg.infile)
-    pre = (input - input.mean(axis=0))
+    pre = input - input.mean(axis=0)
     pos =  input.std(axis=0)
     res = pre/pos
     processed = res
